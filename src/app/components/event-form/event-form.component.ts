@@ -33,10 +33,10 @@ export class EventFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventId = +this.route.snapshot.paramMap.get('id')!;
-  this.eventService.getEvent(this.eventId).subscribe((event: any) => {
-    this.event = event;
-    console.log('Fetched event:', this.event);  // Check if the correct event is fetched
-  });
+    this.eventService.getEvent(this.eventId).subscribe((event: any) => {
+      this.event = event;
+      console.log('Fetched event:', this.event); // Check if the correct event is fetched
+    });
   }
 
   // Getter methods to access form controls

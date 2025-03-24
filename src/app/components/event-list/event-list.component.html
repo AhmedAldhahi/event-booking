@@ -1,12 +1,12 @@
-<div *ngIf="events.length > 0; else noEvents">
+<div *ngIf="events.length > 0">
   <div *ngFor="let event of events" class="event-card">
     <h3>{{ event.name }}</h3>
-    <p>{{ event.description || 'No description available'}}</p>
-    <p><strong>Date:</strong> {{ event.date | date:'short' }}</p>
+    <p>{{ event.description || "No description available" }}</p>
+    <p><strong>Date:</strong> {{ event.date | date : "short" }}</p>
     <button (click)="openBookingPage(event)">Book Now</button>
   </div>
 </div>
 
-<ng-template #noEvents>
+<ng-container *ngIf="events.length === 0">
   <p>No events available at the moment.</p>
-</ng-template>
+</ng-container>

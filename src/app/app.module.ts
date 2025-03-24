@@ -11,11 +11,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-const routes: Routes = [
-  { path: '', component: EventListComponent },  // Main page with list of events
-  { path: 'book-event/:id', component: EventFormComponent }  // Booking form page
-];
+
 
 @NgModule({
   declarations: [
@@ -32,7 +30,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

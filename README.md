@@ -1,68 +1,140 @@
-# EventBooking
+# 🎟️ Event Booking System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+Welcome! This is a full-stack web application where users can browse upcoming events and book their attendance. I built this as part of a technical challenge to demonstrate my skills in frontend development (Angular), backend (Node.js/Express), and database management using Sequelize ORM with MySQL.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🌐 Live Demo
 
-## Code scaffolding
+- **Frontend** (Angular + Angular Material): https://your-frontend-url.netlify.app
+- **Backend** (Node.js + Express + Sequelize): https://your-backend-url.onrender.com
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+> Replace the links above with your actual live URLs before submission ✅
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🚀 Features
 
-## Running unit tests
+- Responsive homepage displaying events (name, date, location)
+- Hover-to-view event details (description, location)
+- Booking form with name, email, and phone number
+- Form validation and confirmation modal
+- Sequelize ORM with migrations and model-based DB logic
+- Clean, modern UI using Angular Material
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## ⚙️ Tech Stack
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+| Layer        | Tech                                |
+|--------------|-------------------------------------|
+| **Frontend** | Angular, Angular Material, TypeScript |
+| **Backend**  | Node.js, Express.js                 |
+| **Database** | MySQL with Sequelize ORM            |
+| **Hosting**  | Netlify (frontend), Render (backend) |
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 📁 Project Structure
 
+```
+event-booking/
+│
+├── backend/                → Express + Sequelize backend
+│   ├── models/             → Sequelize models
+│   ├── migrations/         → Database migrations
+│   ├── controllers/        → API logic
+│   ├── routes/             → API endpoints
+│   └── server.js           → Entry point for backend
+│
+├── src/                    → Angular frontend
+│   ├── app/
+│   │   ├── components/     → Event display, booking form, etc.
+│   │   ├── services/       → API calls to backend
+│   │   └── ...
+│   └── index.html
+```
 
-create database event_booking_db;
-use event_booking_db;
+---
 
-CREATE TABLE events (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    date DATE NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    description TEXT
-);
+## 🧪 How to Run Locally
 
+### 🔧 Backend Setup
 
-CREATE TABLE bookings (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    event_id INT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone VARCHAR(15) NOT NULL,
-    booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (event_id) REFERENCES events(id)
-);
+1. Navigate to the backend:
 
+```bash
+cd backend
+npm install
+```
 
-INSERT INTO events (name, date, location, description) VALUES
-('Tech Conference 2025', '2025-05-01', 'New York, NY', 'A conference on the latest in tech innovations.'),
-('Music Festival', '2025-06-15', 'Los Angeles, CA', 'A three-day music festival with top artists.');
+2. Create a `.env` file with your DB config:
 
+```
+DB_USER=your_mysql_user
+DB_PASS=your_mysql_password
+DB_NAME=event_booking_db
+DB_HOST=localhost
+PORT=5000
+```
 
+3. Run migrations:
 
-INSERT INTO bookings (event_id, name, email, phone) VALUES
-(1, 'John Doe', 'johndoe@example.com', '1234567890'),
-(2, 'Jane Smith', 'janesmith@example.com', '0987654321');
+```bash
+npx sequelize-cli db:migrate
+```
 
-SELECT * FROM Events;
+4. (Optional) Seed the database:
 
-ALTER TABLE Events 
-ADD COLUMN createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-ADD COLUMN updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+```bash
+npx sequelize-cli db:seed:all
+```
 
+5. Start the server:
+
+```bash
+node server.js
+```
+
+---
+
+### 💻 Frontend Setup
+
+1. Navigate to the Angular frontend:
+
+```bash
+cd frontend
+npm install
+```
+
+2. Start the Angular dev server:
+
+```bash
+ng serve
+```
+
+3. Open your browser at:
+
+```
+http://localhost:4200
+```
+
+---
+
+## 📌 Notes
+
+- The API base URL in the frontend is pointing to the hosted backend. If testing locally, make sure to update the endpoint in your Angular service to `http://localhost:5000/api/...`
+- The database must be running for the backend to function properly.
+
+---
+
+## 👨‍💻 Author
+
+Made with effort and enthusiasm by **Ahmed Aldhahi**  
+Feel free to reach out via [GitHub](https://github.com/AhmedAldhahi) if you'd like to connect.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.

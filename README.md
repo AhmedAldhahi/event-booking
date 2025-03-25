@@ -6,8 +6,8 @@ Welcome! This is a full-stack web application where users can browse upcoming ev
 
 ## 🌐 Live Demo
 
-- **Frontend** (Angular + Angular Material): https://your-frontend-url.netlify.app
-- **Backend** (Node.js + Express + Sequelize): https://your-backend-url.onrender.com
+- **Frontend** (Angular + Angular Material): https://event-booking-2lkhrtvd9-ahmads-projects-035fb1f5.vercel.app/
+- **Backend** (Node.js + Express + Sequelize): https://event-booking-c8jf.onrender.com
 
 > Replace the links above with your actual live URLs before submission ✅
 
@@ -26,12 +26,12 @@ Welcome! This is a full-stack web application where users can browse upcoming ev
 
 ## ⚙️ Tech Stack
 
-| Layer        | Tech                                |
-|--------------|-------------------------------------|
+| Layer        | Tech                                  |
+| ------------ | ------------------------------------- |
 | **Frontend** | Angular, Angular Material, TypeScript |
-| **Backend**  | Node.js, Express.js                 |
-| **Database** | MySQL with Sequelize ORM            |
-| **Hosting**  | Netlify (frontend), Render (backend) |
+| **Backend**  | Node.js, Express.js                   |
+| **Database** | MySQL with Sequelize ORM              |
+| **Hosting**  | Netlify (frontend), Render (backend)  |
 
 ---
 

@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class EventListComponent {
   events: any[] = [];
+  hoveredEvent: any = null;
+
 
   constructor(
     private eventService: EventService,
@@ -55,17 +57,17 @@ export class EventListComponent {
 
   bookEvent(userData: any, eventId: number): void {
     this.eventService.bookEvent(userData, eventId).subscribe(
-      (response) => {
+      (response: any) => {
         console.log('Event booked successfully:', response);
       },
-      (error) => {
+      (error: any) => {
         console.error('Error booking event:', error);
       }
     );
   }
 
   openBookingPage(event: any): void {
-    console.log('Navigating to book event page with event id:', event.id);
+    // console.log('Navigating to book event page with event id:', event.id);
     // Navigate to the booking page with the event ID
     this.router.navigate(['/book-event', event.id]);
   }

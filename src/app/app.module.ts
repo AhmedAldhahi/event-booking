@@ -12,7 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+// Angular Material Modules
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon'; // <-- add this
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -21,7 +29,7 @@ import { CommonModule } from '@angular/common';
     BookEventComponent,
     EventFormComponent,
     EventListComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +38,17 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

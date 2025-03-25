@@ -5,6 +5,11 @@ class Event extends Model {}
 
 Event.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,14 +23,14 @@ Event.init(
       allowNull: false,
     },
     description: {
-      // Add description field here
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true, // Optional field
     },
   },
   {
     sequelize,
     modelName: "Event",
+    timestamps: false, // Set to true if you want createdAt & updatedAt fields
   }
 );
 

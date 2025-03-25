@@ -13,7 +13,7 @@ export class BookEventComponent {
   events: any[] = [];
   showModal = false;
   selectedEvent: any = null;
-  booking = { name: '', email: '', phone: '' };
+  booking = { name: '', email: '', phoneNumber: '' };
 
   constructor(
     private eventService: EventService,

@@ -16,7 +16,7 @@ export class EventService {
   }
 
   getEvent(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/events/${id}`);
   }
 
   // Method to create an event

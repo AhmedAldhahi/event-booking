@@ -5,7 +5,13 @@ import { BookingService } from '../../services/booking.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { Booking } from '../../models/booking.model';
 
+
+interface BookingResponse {
+  message: string;
+  booking: Booking;
+}
 @Component({
   selector: 'app-event-form',
   templateUrl: './event-form.component.html',
@@ -14,7 +20,7 @@ import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-m
 export class EventFormComponent implements OnInit {
   eventId!: number;
   event: any; // Store event data
-  booking = { name: '', email: '', phone: '' }; // Booking data model
+
   bookEventForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -32,10 +38,21 @@ export class EventFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.eventId = +this.route.snapshot.paramMap.get('id')!;
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.eventId = +id;
+        this.fetchEvent();
+      } else {
+        console.error('No event ID provided in the route');
+      }
+    });
+  }
+
+  fetchEvent() {
     this.eventService.getEvent(this.eventId).subscribe((event: any) => {
       this.event = event;
-      console.log('Fetched event:', this.event); // Check if the correct event is fetched
+      console.log('Fetched event:', this.event);
     });
   }
 
@@ -56,7 +73,22 @@ export class EventFormComponent implements OnInit {
   saveData(): void {
     if (this.bookEventForm.valid) {
       console.log('✅ Form submitted:', this.bookEventForm.value);
-
+  
+      const bookingData: Booking = {
+        name: this.bookEventForm.value.name as string,
+        email: this.bookEventForm.value.email as string,
+        phoneNumber: this.bookEventForm.value.phoneNumber as string,
+        eventId: this.eventId as number, // Include eventId here
+      };
+  
+      console.log('Booking data:', bookingData); // Log the data to see if it's correct
+  
+      // Correct method call from BookingService
+      this.bookingService.bookEvent(bookingData).subscribe(
+        (response: BookingResponse) => console.log('Booking saved!', response),
+        (error: any) => console.error('Error saving booking:', error)
+      );
+  
       // Open confirmation modal
       this.dialog.open(ConfirmationModalComponent, {
         data: this.bookEventForm.value,
@@ -67,4 +99,5 @@ export class EventFormComponent implements OnInit {
       console.log('❌ Invalid form');
     }
   }
+  
 }

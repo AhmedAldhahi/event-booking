@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventService {
-  private apiUrl = 'http://localhost:5000/api'; // URL of your backend API
+  private apiUrl = 'https://event-booking-c8jf.onrender.com/api'; // URL of your backend API
 
   constructor(private http: HttpClient) {}
 

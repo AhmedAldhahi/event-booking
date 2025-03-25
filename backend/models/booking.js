@@ -1,43 +1,25 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');  // Adjust with your DB config
+'use strict';
+const { Model } = require('sequelize');
 
-const Booking = sequelize.define('Booking', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  event_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  name: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-  },
-  phoneNumber: {
-    type: DataTypes.STRING(15),
-    allowNull: false,  // Change this if you want to allow NULL for phone
-  },
-  booking_date: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-}, {
-  tableName: 'bookings',
-  timestamps: true, // Automatically manages createdAt and updatedAt
-  updatedAt: 'updatedAt',
-});
+module.exports = (sequelize, DataTypes) => {
+  class Booking extends Model {
+    /**
+     * Associations
+     */
+    static associate(models) {
+      Booking.belongsTo(models.Event, { foreignKey: 'eventId' });
+    }
+  }
 
-Booking.associate = (models) => {
-  Booking.belongsTo(models.Event, {
-    foreignKey: 'event_id',
-    targetKey: 'id',
+  Booking.init({
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    phoneNumber: DataTypes.STRING,
+    eventId: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'Booking',
   });
-};
 
-module.exports = Booking;
+  return Booking;
+};

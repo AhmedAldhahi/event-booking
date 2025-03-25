@@ -1,37 +1,25 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/database"); // Adjust if necessary
+'use strict';
+const { Model } = require('sequelize');
 
-class Event extends Model {}
-
-Event.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true, // Optional field
-    },
-  },
-  {
-    sequelize,
-    modelName: "Event",
-    timestamps: false, // Set to true if you want createdAt & updatedAt fields
+module.exports = (sequelize, DataTypes) => {
+  class Event extends Model {
+    /**
+     * Define associations here
+     */
+    static associate(models) {
+      Event.hasMany(models.Booking, { foreignKey: 'eventId' });
+    }
   }
-);
 
-module.exports = Event;
+  Event.init({
+    name: DataTypes.STRING,
+    date: DataTypes.DATE,
+    location: DataTypes.STRING,
+    description: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Event',
+  });
+
+  return Event;
+};

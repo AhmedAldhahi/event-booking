@@ -17,6 +17,7 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 app.use("/api/events", eventRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/seed", seedRoutes);
 
 app.listen(PORT, async () => {
   console.log(`🚀 Server running on port ${PORT}`);
